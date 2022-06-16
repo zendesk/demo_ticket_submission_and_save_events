@@ -9,9 +9,14 @@
   "private": true,
   "location": {
     "support": {
-      "background" :"assets/background.html",
-      "ticket_sidebar": "assets/iframe.html",
-      "new_ticket_sidebar": "assets/iframe.html"
+      "support": {
+        "ticket_sidebar": {
+          "url": "assets/iframe.html",
+          "flexible": true
+        },
+        "new_ticket_sidebar": "assets/iframe.html",
+        "background" :"assets/background.html"
+      }
     }
   },
   "version": "1.0",

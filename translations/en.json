@@ -1,8 +1,8 @@
 {
   "app": {
-    "name": "Zen Tunes",
-    "short_description": "Play the famous zen tunes in your help desk.",
-    "long_description": "Play the famous zen tunes in your help desk and \n listen to the beats it has to offer.",
-    "installation_instructions": "Simply click install."
+    "name": "Test Submission and Save Events",
+    "short_description": "Showcases ticket save life cycle",
+    "long_description": "Showcases ticket save life cycle",
+    "installation_instructions": "Install as a private app in your instance."
   }
 }
