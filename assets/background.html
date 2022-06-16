@@ -7,10 +7,11 @@
   <h2>Background</h2>
   <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
   <script>
-    var client = ZAFClient.init();
+    const client = ZAFClient.init();
     client.invoke('resize', { width: '100%', height: '200px' });
 
-    client.on('ticket.saved', (data) => {
+    // background location fires this at the completion of the server-side ticket save action (ticket.saved)
+    client.on('ticket.saved', function(data) {
       console.log("ticket.saved data:", data);
     });
   </script>

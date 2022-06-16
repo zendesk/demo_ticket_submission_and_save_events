@@ -1,44 +1,70 @@
 <html>
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://assets.zendesk.com/apps/sdk-assets/css/2/zendesk_garden.css" type="text/css">
-</head>
-<body>
-  <h2 class="u-gamma">Test Ticket Save Events</h2>
-  <p>View Console window for what gets fired</p>
-  <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
-  <script>
-    var client = ZAFClient.init();
-    client.invoke('resize', { width: '100%', height: '200px' });
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="https://assets.zendesk.com/apps/sdk-assets/css/2/zendesk_garden.css"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <h2 class="u-gamma">Test Ticket Save Events</h2>
+    <p style="margin: 20px 0">View Console window for what gets fired</p>
+    <label>Make me fail<input type="checkbox" id="testFail" name="testFail" style="margin-left: 10px"></label>
+    <script
+      type="text/javascript"
+      src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"
+    ></script>
+    <script>
+      const client = ZAFClient.init();
+      client.invoke("resize", { width: "100%", height: "200px" });
 
-    client.on('ticket.save', function() {
-      console.log("ticket.save called");
-      // Syntax: client.set('ticket.customField:custom_field_XXX');
-      // https://developer.zendesk.com/apps/docs/support-api/ticket_sidebar#ticket.customfieldfieldname
-      // 
-      // client.set() returns a Promise:
-      // https://developer.zendesk.com/apps/docs/core-api/client_api#client.setkey-val
-      // Uncomment this if you want to test saving to a custom field:
-      // return client.set('ticket.customField:custom_field_80424847', `time: ${Date()}`);
-      return true;
-    });
+      // initiates the ticket save lifecycle
+      client.on("ticket.save", function () {
+        console.log("ticket.save called");
+        // Syntax: client.set('ticket.customField:custom_field_XXX');
+        // https://developer.zendesk.com/apps/docs/support-api/ticket_sidebar#ticket.customfieldfieldname
+        //
+        // client.set() returns a Promise:
+        // https://developer.zendesk.com/apps/docs/core-api/client_api#client.setkey-val
+        // Uncomment this if you want to test saving to a custom field:
+        // return client.set('ticket.customField:custom_field_80424847', `time: ${Date()}`);
 
-    client.on('ticket.submit.start', function() {
-      console.log("ticket.submit.start called");
-    });
+        // the following lines (tags & the if statement) are to test the ticket.submit.fail
+        // Comment this out if testing saving to a custom field from above.
 
-    client.on('ticket.submit.done', function() {
-      console.log("ticket.submit.done called");
-    });
+        const checkbox = document.getElementById("testFail")
+        if(checkbox.checked === true) {
+          return false
+        } else {
+          return true
+        }
 
-    client.on('ticket.submit.fail', function() {
-      console.log("ticket.submit.fail");
-    });
+      });
 
-    client.on('ticket.submit.always', function() {
-      console.log("ticket.submit.always called");
-    });
+      // The ticket save has been initiated; hook handlers haven't run yet
+      client.on("ticket.submit.start", function () {
+        console.log("ticket.submit.start called");
+      });
 
-  </script>
-</body>
+      // The ticket save was successfully completed
+      client.on("ticket.submit.done", function () {
+        console.log("ticket.submit.done called");
+      });
+
+      // The ticket save failed due to a responding ticket.save hook handler
+      // Check the box next to "Make me fail" to test this
+      client.on("ticket.submit.fail", function () {
+        console.log("ticket.submit.fail");
+      });
+
+      // The ticket save lifecycle has been completed. Always fires regardless of success or failure
+      client.on("ticket.submit.always", function () {
+        console.log("ticket.submit.always called");
+      });
+      
+
+
+    </script>
+  </body>
 </html>
