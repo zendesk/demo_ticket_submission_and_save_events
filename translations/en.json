@@ -2,7 +2,7 @@
   "app": {
     "name": "Test Submission and Save Events",
     "short_description": "Showcases ticket save life cycle",
-    "long_description": "Showcases ticket save life cycle",
+    "long_description": "Showcases ticket save & submit life cycle. The user can test multiple ticket save & submit events to see the lifecycle process displayed in the console.",
     "installation_instructions": "Install as a private app in your instance."
   }
 }
