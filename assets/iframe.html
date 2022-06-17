@@ -30,16 +30,13 @@
         // Uncomment this if you want to test saving to a custom field:
         // return client.set('ticket.customField:custom_field_80424847', `time: ${Date()}`);
 
-        // the following lines (tags & the if statement) are to test the ticket.submit.fail
-        // Comment this out if testing saving to a custom field from above.
-
+        // the following lines (the if statement) are to test the ticket.submit.fail
         const checkbox = document.getElementById("testFail")
         if(checkbox.checked === true) {
           return false
         } else {
           return true
         }
-
       });
 
       // The ticket save has been initiated; hook handlers haven't run yet
@@ -63,8 +60,6 @@
         console.log("ticket.submit.always called");
       });
       
-
-
     </script>
   </body>
 </html>
