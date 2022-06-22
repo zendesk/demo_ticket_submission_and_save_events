@@ -22,13 +22,10 @@
       // initiates the ticket save lifecycle
       client.on("ticket.save", function () {
         console.log("ticket.save called");
-        // Syntax: client.set('ticket.customField:custom_field_XXX');
-        // https://developer.zendesk.com/apps/docs/support-api/ticket_sidebar#ticket.customfieldfieldname
-        //
-        // client.set() returns a Promise:
-        // https://developer.zendesk.com/apps/docs/core-api/client_api#client.setkey-val
-        // Uncomment this if you want to test saving to a custom field:
-        // return client.set('ticket.customField:custom_field_80424847', `time: ${Date()}`);
+        // You can test using a ZAF Client API method here to see it in action 
+        // such as client.set('ticket.customField:custom_field_XXX');
+        // https://developer.zendesk.com/api-reference/apps/apps-support-api/ticket_sidebar/#ticketcustomfieldfieldname
+
 
         // the following lines (the if statement) are to test the ticket.submit.fail
         const checkbox = document.getElementById("testFail")
