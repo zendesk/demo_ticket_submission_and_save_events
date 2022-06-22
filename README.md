@@ -1,6 +1,6 @@
 # Test Ticket Submission & Save Events
 
-This app showcases the ticket save life cycle. By testing various [ticket save](https://developer.zendesk.com/apps/docs/support-api/ticket_sidebar#ticket-save-hook-events) & [ticket submission events](https://developer.zendesk.com/apps/docs/support-api/ticket_sidebar#ticket-submission-events) in your instance, you'll receive the fired console logs that signify each chronological step in the ticket save life cycle process. View console for output.
+This app showcases the ticket save life cycle. It is installed in the ticket sidebar and background locations. By testing various [ticket save](https://developer.zendesk.com/apps/docs/support-api/ticket_sidebar#ticket-save-hook-events) & [ticket submission events](https://developer.zendesk.com/apps/docs/support-api/ticket_sidebar#ticket-submission-events) in your instance, you'll receive the fired console logs that signify each chronological step in the ticket save life cycle process. In the background location, we are able to listen for server-side save events outside of the ticket sidebar. View console for all outputs.
 
 ## Getting started
 
